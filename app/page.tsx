@@ -9,11 +9,11 @@ export default function Home() {
         <p className="intro-copy">{profile.about}</p>
       </section>
       <section aria-labelledby="research">
-        <div className="section-heading"><h2 id="research">Research Interests</h2><span>Focus</span></div>
+        <div className="section-heading"><h2 id="research">Research Interests</h2></div>
         <p>{profile.interests}</p>
       </section>
       <section aria-labelledby="publications">
-        <div className="section-heading"><h2 id="publications">Publications</h2><span>Selected work</span></div>
+        <div className="section-heading"><h2 id="publications">Publications</h2></div>
         <ol className="publications">
           {profile.publications.map((paper) => (
             <li key={paper.title}>
@@ -26,7 +26,7 @@ export default function Home() {
         </ol>
       </section>
       <section aria-labelledby="seminars">
-        <div className="section-heading"><h2 id="seminars">Seminars</h2><span>Academic activities</span></div>
+        <div className="section-heading"><h2 id="seminars">Seminars</h2></div>
         <p>{profile.seminars}</p>
       </section>
     </>
