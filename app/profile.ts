@@ -5,10 +5,15 @@ export const profile = {
   about: 'I am a second-year Ph.D. student in the School of Mathematics and Statistics at Central China Normal University.',
   interests: "My research interests lie in harmonic analysis, with a particular focus on Fuglede's spectral set conjecture.",
   seminars: '[To be added] Seminars, reading groups, and academic activities.',
-  email: '',
+  email: 'chentianyu1024@gmail.com',
   affiliation: 'School of Mathematics and Statistics, Central China Normal University',
   address: '[To be added] Office address',
   publications: [
-    { title: '[To be added] Publication title', authors: 'Author / Co-authors', venue: 'Journal, year, volume, issue, and pages', links: [] as { label: string; url: string }[] },
+    {
+      title: "Fuglede's Conjecture for a Union of Two Intervals on ℝ × ℤ_N",
+      authors: 'Tianyu Chen',
+      venue: 'Accepted for publication in Journal of Fourier Analysis and Applications',
+      links: [] as { label: string; url: string }[],
+    },
   ],
 };
