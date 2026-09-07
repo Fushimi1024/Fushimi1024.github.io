@@ -17,8 +17,8 @@ export default function Home() {
         <ol className="publications">
           {profile.publications.map((paper) => (
             <li key={paper.title}>
-              <span className="paper-authors">{paper.authors}</span>,{' '}
-              <em className="paper-title">{paper.title}</em>,{' '}
+              <span className="paper-title">{paper.title}</span>.{' '}
+              {paper.collaborators && <span className="paper-collaborators">(with {paper.collaborators}) </span>}
               <span className="paper-venue">{paper.venue}</span>.
               {paper.links.length > 0 && <div className="paper-links">{paper.links.map((link) => <a key={link.url} href={link.url}>{link.label}<span aria-hidden="true"> ↗</span></a>)}</div>}
             </li>
