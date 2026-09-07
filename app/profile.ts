@@ -10,8 +10,7 @@ export const profile = {
   address: '[To be added] Office address',
   publications: [
     {
-      title: "Fuglede's Conjecture for a Union of Two Intervals on ℝ × ℤ",
-      titleSubscript: 'N',
+      title: "Fuglede's Conjecture for a Union of Two Intervals on $\\mathbb{R} \\times \\mathbb{Z}_N$",
       collaborators: 'Shilei Fan and Huaibin Li',
       venue: 'Journal of Fourier Analysis and Applications, accepted',
       links: [] as { label: string; url: string }[],
