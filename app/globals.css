@@ -61,9 +61,10 @@ h2 { color: #203048; font-size: 1.25rem; font-weight: 650; line-height: 1.5; mar
 .publications { list-style: none; counter-reset: publication; margin: 0; padding: 0; }
 .publications li { position: relative; counter-increment: publication; padding: 2px 0 6px 42px; font-size: 1rem; line-height: 1.7; color: #172a46; }
 .publications li + li { margin-top: 30px; }
-.publications li::before { content: '[' counter(publication) ']'; position: absolute; left: 0; top: 2px; color: #172a46; font-size: 1rem; line-height: 1.7; font-variant-numeric: tabular-nums; font-weight: 500; }
+.publications li::before { content: counter(publication) '.'; position: absolute; left: 0; top: 2px; color: #172a46; font-size: 1rem; line-height: 1.7; font-variant-numeric: tabular-nums; font-weight: 500; }
 .paper-authors { font-weight: 500; color: #172a46; }
 .paper-title { font-weight: 400; color: #172a46; }
+.paper-title sub { font-size: .7em; vertical-align: sub; }
 .paper-collaborators { color: #172a46; }
 .paper-venue { color: #344761; }
 .paper-links { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; font-size: .875rem; }
