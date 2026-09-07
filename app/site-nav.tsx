@@ -3,8 +3,8 @@
 import { usePathname } from 'next/navigation';
 
 const pages = [
-  { href: '/', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/', label: 'About', subtitle: 'Profile' },
+  { href: '/contact', label: 'Contact', subtitle: 'Details' },
 ];
 
 export function SiteNav() {
@@ -13,7 +13,7 @@ export function SiteNav() {
     <nav className="site-nav" aria-label="Main navigation">
       {pages.map((page) => (
         <a key={page.href} href={page.href} aria-current={pathname === page.href ? 'page' : undefined}>
-          {page.label}
+          <span>{page.label}</span><span className="nav-translation">{page.subtitle}</span>
         </a>
       ))}
     </nav>
