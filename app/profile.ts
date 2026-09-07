@@ -10,10 +10,10 @@ export const profile = {
   address: '[To be added] Office address',
   publications: [
     {
-      title: "Fuglede's Conjecture for a Union of Two Intervals on ℝ × ℤ_N",
-      authors: 'Tianyu Chen, Shilei Fan, and Huaibin Li',
+      title: "Fuglede's Conjecture for a Union of Two Intervals on ℝ × ℤ",
+      titleSubscript: 'N',
       collaborators: 'Shilei Fan and Huaibin Li',
-      venue: 'Accepted for publication in Journal of Fourier Analysis and Applications',
+      venue: 'Journal of Fourier Analysis and Applications, accepted',
       links: [] as { label: string; url: string }[],
     },
   ],
