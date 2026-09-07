@@ -13,9 +13,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <a className="author" href="/">{profile.name}</a>
           <p className="chinese-name">{profile.role}</p>
           <p className="affiliation">{profile.affiliation}</p>
+          {profile.email && <a className="sidebar-email" href={`mailto:${profile.email}`}>{profile.email}</a>}
         </header>
         <SiteNav />
-        {profile.email && <a className="sidebar-email" href={`mailto:${profile.email}`}>{profile.email}</a>}
       </Sidebar>
       <main id="main" className="content" tabIndex={-1}>{children}</main>
     </SidebarProvider>
