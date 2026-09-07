@@ -11,5 +11,4 @@ export const profile = {
   publications: [
     { title: '[To be added] Publication title', authors: 'Author / Co-authors', venue: 'Journal, year, volume, issue, and pages', links: [] as { label: string; url: string }[] },
   ],
-  teaching: '[To be added] Courses, terms, and teaching experience.',
 };

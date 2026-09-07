@@ -10,7 +10,7 @@ if (result.error) throw result.error;
 if (result.status !== 0) process.exit(result.status ?? 1);
 
 const manifest = JSON.parse(readFileSync('dist/server/vinext-prerender.json', 'utf8'));
-const pages = ['/', '/teaching', '/contact'];
+const pages = ['/', '/contact'];
 for (const route of pages) {
   if (!manifest.routes.some((item) => item.route === route && item.status === 'rendered')) {
     throw new Error(`Static page missing: ${route}`);
@@ -18,7 +18,7 @@ for (const route of pages) {
 }
 // Vinext beta redirects slash-suffixed routes during export. Export without
 // slash redirects, then use directory index files for GitHub Pages clean URLs.
-for (const route of ['teaching', 'contact']) {
+for (const route of ['contact']) {
   mkdirSync(`dist/client/${route}`, { recursive: true });
   renameSync(`dist/client/${route}.html`, `dist/client/${route}/index.html`);
 }
@@ -31,4 +31,4 @@ for (const route of pages) {
     if (!existsSync(resolve('dist/client', `.${match[1]}`))) throw new Error(`Missing asset: ${match[1]}`);
   }
 }
-console.log('GitHub Pages ready: all 3 pages and referenced assets verified in dist/client.');
+console.log('GitHub Pages ready: all pages and referenced assets verified in dist/client.');

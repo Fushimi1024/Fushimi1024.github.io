@@ -5,7 +5,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: { default: `${profile.name} | Academic Homepage`, template: `%s | ${profile.name}` },
-  description: 'Academic homepage for Tianyu Chen: research, publications, teaching, and contact information.',
+  description: 'Academic homepage for Tianyu Chen: research, publications, and contact information.',
   icons: { icon: '/favicon.svg' },
 };
 

@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation';
 
 const pages = [
   { href: '/', label: 'About', subtitle: 'Profile' },
-  { href: '/teaching', label: 'Teaching', subtitle: 'Courses' },
   { href: '/contact', label: 'Contact', subtitle: 'Details' },
 ];
 

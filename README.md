@@ -4,7 +4,7 @@ A personal academic homepage with a white-and-blue visual direction, profile and
 
 ## Update the profile
 
-Edit `app/profile.ts` to update the name, introduction, research interests, seminars, publications, teaching, and contact details. Unprovided details have clear English placeholders. An empty email field does not render a fabricated email link.
+Edit `app/profile.ts` to update the name, introduction, research interests, seminars, publications, and contact details. Unprovided details have clear English placeholders. An empty email field does not render a fabricated email link.
 
 Publication links use this form: `[{ label: 'arXiv', url: 'https://example.org' }]`. No links appear when the list is empty.
 
@@ -26,4 +26,4 @@ The workflow in `.github/workflows/pages.yml` automatically deploys the `main` b
 2. Wait for the workflow to complete.
 3. Visit `https://fushimi1024.github.io/`.
 
-`pnpm build:github` statically exports and verifies all three pages in `dist/client`. It is configured for a root GitHub Pages site such as `username.github.io`.
+`pnpm build:github` statically exports and verifies every page in `dist/client`. It is configured for a root GitHub Pages site such as `username.github.io`.
