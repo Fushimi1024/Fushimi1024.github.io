@@ -4,7 +4,8 @@ export default function Home() {
   return (
     <>
       <section className="intro-section" aria-labelledby="about">
-        <h1 id="about">About Me</h1>
+        <p className="eyebrow">ABOUT</p>
+        <h1 id="about">About Me<span className="heading-dot">.</span></h1>
         <p className="intro-copy">{profile.about}</p>
       </section>
       <section aria-labelledby="research">
