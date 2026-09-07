@@ -46,7 +46,7 @@ a:focus-visible { outline: 2px solid var(--ring); outline-offset: 5px; }
 .site-nav a:hover { color: var(--primary); background: var(--muted); text-decoration: none; }
 .site-nav a[aria-current='page'] { background: #edf2fb; color: #244ea3; font-weight: 600; }
 .nav-translation { font-size: .875rem; }
-.sidebar-email { display: block; margin-top: 18px; font-size: .8125rem; overflow-wrap: anywhere; }
+.sidebar-email { display: block; margin-top: 10px; font-size: .8125rem; overflow-wrap: anywhere; }
 .content { min-width: 0; padding-left: 0; overflow-wrap: anywhere; }
 .intro-section { padding-bottom: 35px; }
 .content .eyebrow { margin-bottom: 15px; }
