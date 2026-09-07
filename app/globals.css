@@ -60,11 +60,12 @@ h2 { color: #203048; font-size: 1.25rem; font-weight: 650; line-height: 1.5; mar
 .section-heading > span { flex-shrink: 0; color: var(--muted-foreground); font-size: .875rem; }
 .content section > p:not(.eyebrow):not(.intro-copy) { color: #526078; line-height: 1.95; }
 .publications { list-style: none; counter-reset: publication; margin: 0; padding: 0; }
-.publications li { position: relative; counter-increment: publication; padding: 4px 0 6px 42px; }
-.publications li + li { margin-top: 25px; }
-.publications li::before { content: counter(publication, decimal-leading-zero); position: absolute; left: 0; top: 4px; color: #365ba2; font-size: .875rem; font-variant-numeric: tabular-nums; font-weight: 600; }
-h3 { margin: 0 0 8px; font-size: 1.0625rem; font-weight: 600; line-height: 1.65; color: #203048; }
-.paper-authors, .paper-venue { font-size: .9375rem; line-height: 1.8; color: #657184; margin: 0 0 3px; }
+.publications li { position: relative; counter-increment: publication; padding: 2px 0 6px 58px; }
+.publications li + li { margin-top: 30px; }
+.publications li::before { content: '[' counter(publication) ']'; position: absolute; left: 0; top: 2px; color: #203048; font-size: 1.25rem; line-height: 1.55; font-variant-numeric: tabular-nums; font-weight: 500; }
+h3 { display: inline; margin: 0; font-size: 1.25rem; font-weight: 500; line-height: 1.55; color: #172a46; }
+.paper-collaborators { font-weight: 400; color: #344761; }
+.paper-authors, .paper-venue { font-size: .9375rem; line-height: 1.8; color: #657184; margin: 8px 0 3px; }
 .paper-venue { font-style: italic; }
 .paper-links { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; font-size: .875rem; }
 dt { font-weight: 600; margin-top: 27px; color: #203048; }
