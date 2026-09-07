@@ -4,16 +4,16 @@ import { SiteShell } from './site-shell';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: { default: `${profile.name} | 个人主页`, template: `%s | ${profile.name}` },
-  description: '个人学术主页：个人介绍、研究方向、论文、教学与联系方式。',
+  title: { default: `${profile.name} | Academic Homepage`, template: `%s | ${profile.name}` },
+  description: 'Academic homepage for Tianyu Chen: research, publications, teaching, and contact information.',
   icons: { icon: '/favicon.svg' },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="en">
       <body>
-        <a className="skip-link" href="#main">跳转到正文</a>
+        <a className="skip-link" href="#main">Skip to main content</a>
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

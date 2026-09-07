@@ -6,7 +6,7 @@ export default function Contact() {
     <h1>Contact</h1>
     <dl>
       <dt>Email</dt>
-      <dd>{profile.email ? <a href={`mailto:${profile.email}`}>{profile.email}</a> : '［邮箱待填写］'}</dd>
+      <dd>{profile.email ? <a href={`mailto:${profile.email}`}>{profile.email}</a> : '[To be added] Email address'}</dd>
       <dt>Affiliation</dt><dd>{profile.affiliation}</dd>
       <dt>Office</dt><dd>{profile.address}</dd>
     </dl>
