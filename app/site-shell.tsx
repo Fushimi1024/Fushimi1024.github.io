@@ -10,7 +10,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <SidebarProvider className="academic-shell">
       <Sidebar collapsible="none" className="profile-sidebar">
         <header className="profile-header">
-          <p className="eyebrow">PERSONAL WEBSITE</p>
           <a className="author" href="/">{profile.name}</a>
           <p className="chinese-name">{profile.role}</p>
           <p className="affiliation">{profile.affiliation}</p>
