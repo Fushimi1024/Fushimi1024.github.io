@@ -12,8 +12,11 @@ export const profile = {
     {
       title: "Fuglede's Conjecture for a Union of Two Intervals on $\\mathbb{R} \\times \\mathbb{Z}_N$",
       collaborators: 'Shilei Fan and Huaibin Li',
-      venue: 'JFAA, accepted',
-      links: [] as { label: string; url: string }[],
+      venue: 'JFAA, published online (2026)',
+      links: [
+        { label: 'DOI', url: 'https://doi.org/10.1007/s00041-026-10295-7' },
+        { label: 'SharedIt', url: 'https://rdcu.be/uAMtMw5MPX2a' },
+      ] as { label: string; url: string }[],
     },
   ],
 };
