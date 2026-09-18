@@ -15,7 +15,7 @@ export const profile = {
       venue: 'JFAA, published online (2026)',
       links: [
         { label: 'DOI', url: 'https://doi.org/10.1007/s00041-026-10295-7' },
-        { label: 'SharedIt', url: 'https://rdcu.be/uAMtMw5MPX2a' },
+        { label: 'Journal version', url: '/fuglede-two-intervals-jfaa.pdf' },
       ] as { label: string; url: string }[],
     },
   ],
