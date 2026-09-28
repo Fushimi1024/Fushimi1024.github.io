@@ -2,7 +2,7 @@
 export const profile = {
   name: 'Tianyu Chen',
   role: 'Ph.D. Candidate',
-  about: 'I am a second-year Ph.D. student in the School of Mathematics and Statistics at Central China Normal University.',
+  about: 'I am a second-year Ph.D. student in the School of Mathematics and Statistics at Central China Normal University, and a joint Ph.D. student in the Department of Mathematics and Applied Mathematics at the University of Crete.',
   interests: "My research interests lie in harmonic analysis, with a particular focus on Fuglede's spectral set conjecture.",
   seminars: '[To be added] Seminars, reading groups, and academic activities.',
   email: 'chentianyu1024@gmail.com',
