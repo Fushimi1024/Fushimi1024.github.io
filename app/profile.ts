@@ -11,7 +11,10 @@ export const profile = {
   publications: [
     {
       title: "Fuglede's Conjecture for a Union of Two Intervals on $\\mathbb{R} \\times \\mathbb{Z}_N$",
-      collaborators: 'Shilei Fan and Huaibin Li',
+      collaborators: [
+        { name: 'Shilei Fan', url: 'https://maths.ccnu.edu.cn/info/1155/21114.htm' },
+        { name: 'Huaibin Li', url: 'https://www.cupk.edu.cn/wlxy/c/2024-04-29/521364.shtml' },
+      ],
       venue: 'J. Fourier Anal. Appl. 32(5), Article 88 (2026)',
       links: [
         { label: 'journal', url: 'https://link.springer.com/article/10.1007/s00041-026-10295-7' },
@@ -19,7 +22,11 @@ export const profile = {
     },
     {
       title: 'Weak Tiling by Unions of Non-overlapping Unit Cubes',
-      collaborators: 'Shilei Fan, Mihail N. Kolountzakis, and Chun-Kit Lai',
+      collaborators: [
+        { name: 'Shilei Fan', url: 'https://maths.ccnu.edu.cn/info/1155/21114.htm' },
+        { name: 'Mihail N. Kolountzakis', url: 'https://eigen-space.org/' },
+        { name: 'Chun-Kit Lai', url: 'https://sites.google.com/view/chunkitlai/home' },
+      ],
       venue: 'arXiv:2609.34852 [math.CA] (2026)',
       links: [
         { label: 'arXiv', url: 'https://arxiv.org/abs/2609.34852' },
