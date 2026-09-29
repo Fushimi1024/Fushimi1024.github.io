@@ -18,5 +18,13 @@ export const profile = {
         { label: 'Journal version', url: '/fuglede-two-intervals-jfaa.pdf' },
       ] as { label: string; url: string }[],
     },
+    {
+      title: 'Weak Tiling by Unions of Non-overlapping Unit Cubes',
+      collaborators: 'Shilei Fan, Mihail N. Kolountzakis, and Chun-Kit Lai',
+      venue: 'arXiv:2609.34852 [math.CA]',
+      links: [
+        { label: 'arXiv', url: 'https://arxiv.org/abs/2609.34852' },
+      ] as { label: string; url: string }[],
+    },
   ],
 };
