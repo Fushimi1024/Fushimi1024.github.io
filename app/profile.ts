@@ -29,7 +29,7 @@ export const profile = {
       ],
       venue: 'J. Fourier Anal. Appl. 32(5), Article 88 (2026)',
       links: [
-        { label: 'journal', url: '/two-intervals-R-times-Z.pdf' },
+        { label: 'journal', url: 'https://link.springer.com/article/10.1007/s00041-026-10295-7' },
       ] as { label: string; url: string }[],
     },
   ],
