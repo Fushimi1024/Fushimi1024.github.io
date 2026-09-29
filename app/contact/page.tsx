@@ -8,7 +8,7 @@ export default function Contact() {
       <dt>Email</dt>
       <dd>{profile.email ? <a href={`mailto:${profile.email}`}>{profile.email}</a> : '[To be added] Email address'}</dd>
       <dt>Affiliation</dt><dd>{profile.affiliation}</dd>
-      <dt>Office</dt><dd>{profile.address}</dd>
+      <dt>Office</dt><dd className="office-address">{profile.address}</dd>
     </dl>
   </section>;
 }
