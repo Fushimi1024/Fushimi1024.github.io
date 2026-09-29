@@ -10,7 +10,7 @@ export const profile = {
   address: 'School of Mathematics and Statistics and Hubei Key Laboratory of Mathematical Science,\nCentral China Normal University, Wuhan 430079, China\n\nDepartment of Mathematics and Applied Mathematics,\nUniversity of Crete, Voutes Campus, 70013 Heraklion, Greece',
   publications: [
     {
-      title: "Fuglede's Conjecture for a Union of Two Intervals on $\\mathbb{R} \\times \\mathbb{Z}_N$",
+      title: "Fuglede's Conjecture for a Union of Two Intervals on \\(\\mathbb{R} \\times \\mathbb{Z}_N\\)",
       collaborators: [
         { name: 'Shilei Fan', url: 'https://maths.ccnu.edu.cn/info/1155/21114.htm' },
         { name: 'Huaibin Li', url: 'https://www.cupk.edu.cn/wlxy/c/2024-04-29/521364.shtml' },
