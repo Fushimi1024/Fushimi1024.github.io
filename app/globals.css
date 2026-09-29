@@ -66,7 +66,7 @@ h2 { color: #203048; font-size: 1.25rem; font-weight: 650; line-height: 1.5; mar
 .paper-title { font-weight: 400; color: #172a46; }
 .paper-collaborators { color: #172a46; }
 .paper-venue { color: #344761; }
-.paper-links { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; font-size: .875rem; }
+.paper-links { font-size: 1rem; }
 dt { font-weight: 600; margin-top: 27px; color: #203048; }
 dd { margin: 5px 0 0; color: #657184; }
 .skip-link { position: fixed; left: 12px; top: -100px; background: white; padding: 10px 16px; border: 1px solid var(--border); z-index: 10; }
