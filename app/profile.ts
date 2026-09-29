@@ -7,7 +7,7 @@ export const profile = {
   seminars: '[To be added] Seminars, reading groups, and academic activities.',
   email: 'chentianyu1024@gmail.com',
   affiliation: 'School of Mathematics and Statistics, Central China Normal University',
-  address: '[To be added] Office address',
+  address: 'School of Mathematics and Statistics and Hubei Key Laboratory of Mathematical Science,\nCentral China Normal University, Wuhan 430079, China\n\nDepartment of Mathematics and Applied Mathematics,\nUniversity of Crete, Voutes Campus, 70013 Heraklion, Greece',
   publications: [
     {
       title: "Fuglede's Conjecture for a Union of Two Intervals on $\\mathbb{R} \\times \\mathbb{Z}_N$",
