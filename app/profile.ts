@@ -16,7 +16,7 @@ export const profile = {
         { name: 'Mihail N. Kolountzakis', url: 'https://eigen-space.org/' },
         { name: 'Chun-Kit Lai', url: 'https://sites.google.com/view/chunkitlai/home' },
       ],
-      venue: 'arXiv:2609.34852 [math.CA] (2026)',
+      venue: 'arXiv:2609.34852 (2026)',
       links: [
         { label: 'arXiv', url: 'https://arxiv.org/abs/2609.34852' },
       ] as { label: string; url: string }[],
