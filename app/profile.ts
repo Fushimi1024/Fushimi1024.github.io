@@ -10,17 +10,6 @@ export const profile = {
   address: 'School of Mathematics and Statistics and Hubei Key Laboratory of Mathematical Science,\nCentral China Normal University, Wuhan 430079, China\n\nDepartment of Mathematics and Applied Mathematics,\nUniversity of Crete, Voutes Campus, 70013 Heraklion, Greece',
   publications: [
     {
-      title: "Fuglede's Conjecture for a Union of Two Intervals on \\(\\mathbb{R} \\times \\mathbb{Z}_N\\)",
-      collaborators: [
-        { name: 'Shilei Fan', url: 'https://maths.ccnu.edu.cn/info/1155/21114.htm' },
-        { name: 'Huaibin Li', url: 'https://www.cupk.edu.cn/wlxy/c/2024-04-29/521364.shtml' },
-      ],
-      venue: 'J. Fourier Anal. Appl. 32(5), Article 88 (2026)',
-      links: [
-        { label: 'journal', url: 'https://link.springer.com/article/10.1007/s00041-026-10295-7' },
-      ] as { label: string; url: string }[],
-    },
-    {
       title: 'Weak Tiling by Unions of Non-overlapping Unit Cubes',
       collaborators: [
         { name: 'Shilei Fan', url: 'https://maths.ccnu.edu.cn/info/1155/21114.htm' },
@@ -30,6 +19,17 @@ export const profile = {
       venue: 'arXiv:2609.34852 [math.CA] (2026)',
       links: [
         { label: 'arXiv', url: 'https://arxiv.org/abs/2609.34852' },
+      ] as { label: string; url: string }[],
+    },
+    {
+      title: "Fuglede's Conjecture for a Union of Two Intervals on \\(\\mathbb{R} \\times \\mathbb{Z}_N\\)",
+      collaborators: [
+        { name: 'Shilei Fan', url: 'https://maths.ccnu.edu.cn/info/1155/21114.htm' },
+        { name: 'Huaibin Li', url: 'https://www.cupk.edu.cn/wlxy/c/2024-04-29/521364.shtml' },
+      ],
+      venue: 'J. Fourier Anal. Appl. 32(5), Article 88 (2026)',
+      links: [
+        { label: 'journal', url: 'https://link.springer.com/article/10.1007/s00041-026-10295-7' },
       ] as { label: string; url: string }[],
     },
   ],
