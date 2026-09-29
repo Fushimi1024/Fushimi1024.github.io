@@ -29,7 +29,7 @@ export const profile = {
       ],
       venue: 'J. Fourier Anal. Appl. 32(5), Article 88 (2026)',
       links: [
-        { label: 'journal', url: '/fuglede-two-intervals-jfaa.pdf' },
+        { label: 'journal', url: '/two-intervals-R-times-Z.pdf' },
       ] as { label: string; url: string }[],
     },
   ],
