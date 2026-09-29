@@ -65,8 +65,8 @@ h2 { color: #152b4d; font-size: 1.25rem; font-weight: 650; line-height: 1.5; mar
 .paper-authors { font-weight: 500; color: #172a46; }
 .paper-title { font-weight: 400; color: #152b4d; }
 .paper-collaborators { color: #152b4d; }
-.paper-collaborators a, .paper-links a { color: #1757b8; font-weight: 550; text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .16em; }
-.paper-collaborators a:hover, .paper-links a:hover { color: #0f3e8d; text-decoration-thickness: .12em; }
+.paper-collaborators a, .paper-links a { color: #1757b8; font-weight: 550; text-decoration: none; }
+.paper-collaborators a:hover, .paper-links a:hover { color: #0f3e8d; text-decoration: none; }
 .paper-venue { color: #344761; }
 .paper-links { font-size: 1rem; }
 dt { font-weight: 600; margin-top: 27px; color: #203048; }
