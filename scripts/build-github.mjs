@@ -11,6 +11,7 @@ if (result.status !== 0) process.exit(result.status ?? 1);
 
 const manifest = JSON.parse(readFileSync('dist/server/vinext-prerender.json', 'utf8'));
 const pages = ['/', '/contact'];
+const analyticsToken = process.env.CLOUDFLARE_WEB_ANALYTICS_TOKEN?.trim();
 for (const route of pages) {
   if (!manifest.routes.some((item) => item.route === route && item.status === 'rendered')) {
     throw new Error(`Static page missing: ${route}`);
@@ -27,6 +28,13 @@ for (const route of pages) {
   const filename = route === '/' ? 'dist/client/index.html' : `dist/client${route}/index.html`;
   const html = readFileSync(filename, 'utf8');
   if (!html.includes('<h1') || !html.includes('<nav')) throw new Error(`Incomplete page: ${route}`);
+  if (
+    analyticsToken &&
+    (!html.includes('https://static.cloudflareinsights.com/beacon.min.js') ||
+      !html.includes(analyticsToken))
+  ) {
+    throw new Error(`Cloudflare Web Analytics missing from page: ${route}`);
+  }
   for (const match of html.matchAll(/(?:src|href)="(\/_next\/[^"?#]+)[^"]*"/g)) {
     if (!existsSync(resolve('dist/client', `.${match[1]}`))) throw new Error(`Missing asset: ${match[1]}`);
   }

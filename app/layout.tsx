@@ -10,6 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const cloudflareWebAnalyticsToken = process.env.CLOUDFLARE_WEB_ANALYTICS_TOKEN?.trim();
+
   return (
     <html lang="en">
       <head>
@@ -19,6 +21,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <a className="skip-link" href="#main">Skip to main content</a>
         <SiteShell>{children}</SiteShell>
+        {cloudflareWebAnalyticsToken ? (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({ token: cloudflareWebAnalyticsToken })}
+          />
+        ) : null}
       </body>
     </html>
   );

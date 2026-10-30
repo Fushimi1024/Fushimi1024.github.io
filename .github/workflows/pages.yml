@@ -25,7 +25,10 @@ jobs:
           cache: pnpm
       - uses: actions/configure-pages@v5
       - run: pnpm install --frozen-lockfile
-      - run: pnpm build:github
+      - name: Build static site
+        run: pnpm build:github
+        env:
+          CLOUDFLARE_WEB_ANALYTICS_TOKEN: ${{ secrets.CLOUDFLARE_WEB_ANALYTICS_TOKEN }}
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist/client

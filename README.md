@@ -27,3 +27,14 @@ The workflow in `.github/workflows/pages.yml` automatically deploys the `main` b
 3. Visit `https://fushimi1024.github.io/`.
 
 `pnpm build:github` statically exports and verifies every page in `dist/client`. It is configured for a root GitHub Pages site such as `username.github.io`.
+
+## Traffic analytics
+
+The GitHub Pages workflow supports Cloudflare Web Analytics without committing its site token:
+
+1. Add `fushimi1024.github.io` as a site in Cloudflare Web Analytics.
+2. Copy the token from the generated `data-cf-beacon` snippet.
+3. In the GitHub repository, open **Settings > Secrets and variables > Actions** and create a repository secret named `CLOUDFLARE_WEB_ANALYTICS_TOKEN`.
+4. Run **Publish personal homepage** again, or push a change to `main`.
+
+When the secret is absent, the site still builds normally and does not load an analytics script.
