@@ -5,6 +5,10 @@ export const profile = {
   about: 'I am a second-year Ph.D. student in the School of Mathematics and Statistics at Central China Normal University, and a joint Ph.D. student in the Department of Mathematics and Applied Mathematics at the University of Crete.',
   interests: "My research interests lie in harmonic analysis, with a particular focus on Fuglede's spectral set conjecture.",
   seminars: '[To be added] Seminars, reading groups, and academic activities.',
+  scenery: {
+    description: 'A quiet archive of landscapes, light, and places.',
+    items: [] as { type: 'photo' | 'video'; title: string; location?: string; src: string }[],
+  },
   email: 'chentianyu1024@gmail.com',
   affiliation: 'School of Mathematics and Statistics, Central China Normal University',
   address: 'School of Mathematics and Statistics and Hubei Key Laboratory of Mathematical Science,\nCentral China Normal University, Wuhan 430079, China\n\nDepartment of Mathematics and Applied Mathematics,\nUniversity of Crete, Voutes Campus, 70013 Heraklion, Greece',
