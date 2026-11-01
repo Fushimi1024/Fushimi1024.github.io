@@ -10,7 +10,7 @@ if (result.error) throw result.error;
 if (result.status !== 0) process.exit(result.status ?? 1);
 
 const manifest = JSON.parse(readFileSync('dist/server/vinext-prerender.json', 'utf8'));
-const pages = ['/', '/contact'];
+const pages = ['/', '/contact', '/scenery'];
 const analyticsToken = process.env.CLOUDFLARE_WEB_ANALYTICS_TOKEN?.trim();
 for (const route of pages) {
   if (!manifest.routes.some((item) => item.route === route && item.status === 'rendered')) {
@@ -19,7 +19,7 @@ for (const route of pages) {
 }
 // Vinext beta redirects slash-suffixed routes during export. Export without
 // slash redirects, then use directory index files for GitHub Pages clean URLs.
-for (const route of ['contact']) {
+for (const route of ['contact', 'scenery']) {
   mkdirSync(`dist/client/${route}`, { recursive: true });
   renameSync(`dist/client/${route}.html`, `dist/client/${route}/index.html`);
 }
