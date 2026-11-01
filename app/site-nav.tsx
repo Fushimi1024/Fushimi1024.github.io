@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 const pages = [
   { href: '/', label: 'About', subtitle: 'Profile' },
   { href: '/contact', label: 'Contact', subtitle: 'Details' },
+  { href: '/scenery', label: 'Scenery', subtitle: 'Photos' },
 ];
 
 export function SiteNav() {
