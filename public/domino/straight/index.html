@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9f5e9">
+  <meta name="description" content="摆放一排多米诺骨牌，点一块，看后面的骨牌依次倒下。">
+  <title>多米诺工作室</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23ed603b'/%3E%3Crect x='12' y='5' width='16' height='30' rx='3' fill='%23fff5de'/%3E%3Cpath d='M12 20h16' stroke='%23ed603b'/%3E%3Cg fill='%23ed603b'%3E%3Ccircle cx='20' cy='13' r='2'/%3E%3Ccircle cx='17' cy='26' r='1.6'/%3E%3Ccircle cx='23' cy='29' r='1.6'/%3E%3C/g%3E%3C/svg%3E">
+  <style>
+:root {
+  color-scheme: light;
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+  color: #232235;
+  background: #f9f5e9;
+  font-synthesis: none;
+  --ink: #232235;
+  --accent: #b83d23;
+  --line: #e5ddca;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 280px;
+  background: radial-gradient(ellipse at 95% 0%, #f4e6c9 0%, transparent 50%);
+}
+
+button, input { font: inherit; }
+button { color: inherit; cursor: pointer; }
+button:focus-visible, input:focus-visible {
+  outline: 2px solid #a4341b;
+  outline-offset: 3px;
+}
+
+.studio {
+  width: min(1120px, calc(100% - 88px));
+  margin: 0 auto;
+  padding: clamp(40px, 7vh, 84px) 0 55px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(29px, 4.5vh, 47px);
+}
+
+.wordmark {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin: 0 0 15px;
+  font: 700 0.76rem/1.3 "Geist", system-ui, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.mark {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 6px;
+  color: #fff8e6;
+  background: #b83d23;
+  font-size: 17px;
+  letter-spacing: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6.35vw, 5.75rem);
+  font-weight: 900;
+  letter-spacing: -0.072em;
+  line-height: 1.08;
+}
+
+h1 span { color: var(--accent); }
+
+.intro {
+  margin: 18px 0 0;
+  color: #5b514e;
+  font-size: clamp(0.88rem, 1.75vw, 1.05rem);
+  line-height: 1.7;
+}
+
+.hero-tiles {
+  position: relative;
+  flex: 0 0 154px;
+  height: 136px;
+  margin-right: 27px;
+  transform: translateY(5px);
+}
+
+.hero-tile {
+  position: absolute;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: 57px;
+  height: 104px;
+  padding: 6px;
+  border: 1px solid #201e31;
+  border-radius: 9px;
+  box-shadow: 4px 4px 0 #201e31, 6px 9px 0 #201e3121;
+}
+
+.hero-tile i {
+  display: grid;
+  place-content: center;
+  font: 800 23px/1 system-ui, sans-serif;
+  letter-spacing: 3px;
+  text-indent: 3px;
+}
+
+.hero-tile i + i { border-top: 1px solid currentColor; }
+.hero-tile-back {
+  left: 34px;
+  top: 16px;
+  transform: rotate(-24deg);
+  background: #f5c967;
+}
+
+.hero-tile-front {
+  top: 23px;
+  left: 74px;
+  transform: rotate(20deg);
+  color: #fff8ea;
+  background: #cd4c30;
+}
+
+.workbench {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fffdf6;
+  box-shadow: 0 17px 48px #4a332810, 0 2px 5px #4a33280a;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 81px;
+  padding: 15px 25px;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantity label { font-size: 0.89rem; font-weight: 700; white-space: nowrap; }
+
+.stepper {
+  display: grid;
+  grid-template-columns: 37px 47px 37px;
+  height: 42px;
+  overflow: visible;
+  border: 1px solid #ded6c4;
+  border-radius: 10px;
+  background: #f9f6eb;
+}
+
+.stepper button, .stepper input {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: center;
+}
+
+.stepper button { font-size: 1.18rem; line-height: 1; }
+.stepper button:hover:not(:disabled) { background: #eee5d2; }
+.stepper button:disabled { color: #77716b; cursor: default; }
+.stepper button:first-child { border-radius: 9px 0 0 9px; }
+.stepper button:last-child { border-radius: 0 9px 9px 0; }
+
+.stepper input {
+  appearance: textfield;
+  color: var(--ink);
+  font-size: 0.93rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.stepper input::-webkit-inner-spin-button,
+.stepper input::-webkit-outer-spin-button { appearance: none; margin: 0; }
+
+.place, .reset {
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 10px;
+  white-space: nowrap;
+  font-size: 0.89rem;
+  font-weight: 750;
+  transition: background 130ms ease;
+}
+
+.place { border: 1px solid var(--accent); color: #fff9eb; background: var(--accent); }
+.place:hover { background: #98331e; }
+.reset { display: inline-flex; align-items: center; gap: 5px; margin-left: auto; border: 1px solid #ded6c4; background: transparent; }
+.reset:hover { background: #f3eddf; }
+.reset span { font-size: 1.3rem; line-height: 1; }
+
+.stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 0 12px;
+  border-radius: 13px;
+  color: #f8f1e1;
+  background: radial-gradient(ellipse at 50% 90%, #333147, #252437 68%);
+}
+
+.stage-bar {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px 23px 0;
+  font-size: 0.81rem;
+  pointer-events: none;
+}
+
+.stage-title { display: flex; align-items: center; gap: 8px; font-weight: 750; }
+.stage-title span { width: 8px; height: 8px; border-radius: 50%; background: #f2c464; }
+.counters { display: flex; gap: 18px; color: #d8cfe2; white-space: nowrap; }
+.counters strong { margin-left: 2px; color: #fff6e2; font-variant-numeric: tabular-nums; }
+
+.stage-scroll {
+  --stage-height: clamp(296px, 43vh, 420px);
+  --floor: 27%;
+  position: relative;
+  min-height: var(--stage-height);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #777188 #272538;
+  overscroll-behavior-inline: contain;
+}
+
+.domino-row {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  overflow: clip;
+  width: max-content;
+  min-width: 100%;
+  min-height: var(--stage-height);
+  justify-content: center;
+  align-items: flex-end;
+  gap: 22px;
+  padding: 75px 110px calc(var(--stage-height) * 0.27) 58px;
+}
+
+.domino-row::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: auto 0 0;
+  height: 48%;
+  background:
+    linear-gradient(to bottom, #343146 0%, transparent 95%),
+    repeating-linear-gradient(to right, #55506570 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(to bottom, #55506565 0 1px, transparent 1px 25px);
+  transform: perspective(200px) rotateX(38deg) scale(1.25, 1.08);
+  transform-origin: center bottom;
+  pointer-events: none;
+}
+
+.domino-row::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: var(--floor);
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e9bc7770 10% 90%, transparent);
+  pointer-events: none;
+}
+
+.domino {
+  --tile: #f9eac9;
+  --edge: #c9ae82;
+  --pip: #343044;
+  position: relative;
+  z-index: 1;
+  flex: 0 0 41px;
+  display: block;
+  height: 108px;
+  padding: 0;
+  border: 0;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.domino:nth-child(4n + 1) { --tile: #ee704d; --edge: #a83c30; --pip: #291f2b; }
+.domino:nth-child(4n + 3) { --tile: #f2c464; --edge: #ad7c39; --pip: #342841; }
+.domino:nth-child(4n + 4) { --tile: #91a79e; --edge: #586f71; --pip: #262637; }
+
+.domino::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -13px;
+  bottom: -5px;
+  left: -9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #171624b8;
+  filter: blur(4px);
+}
+
+.tile {
+  position: absolute;
+  inset: 0 3px 0 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  padding: 5px 4px;
+  border: 1px solid #342c3e85;
+  border-radius: 6px;
+  background: linear-gradient(145deg, #fff6 0%, transparent 55%), var(--tile);
+  box-shadow: 4px 0 0 var(--edge), 5px 1px 0 #191625af, inset 0 1px #fff7;
+  transform-origin: right bottom;
+  transition: filter 120ms ease, translate 120ms ease;
+}
+
+.half {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 5px 1px;
+}
+
+.half + .half { border-top: 1px solid #2a263c50; }
+.pip { width: 4.5px; height: 4.5px; border-radius: 50%; background: var(--pip); }
+.pip.is-empty { visibility: hidden; }
+
+.domino:not(.is-falling):hover .tile,
+.domino:not(.is-falling):focus-visible .tile { translate: 0 -6px; filter: brightness(1.13); }
+.domino:focus-visible { outline: 2px solid #fff1d2; outline-offset: 5px; border-radius: 6px; }
+.domino.is-falling { cursor: default; z-index: 0; }
+.domino.is-falling .tile { animation: topple 430ms ease-out forwards; }
+
+@keyframes topple {
+  0% { transform: rotate(0deg); animation-timing-function: ease-in; }
+  29% { transform: rotate(13deg); animation-timing-function: cubic-bezier(.48, .08, .65, 1); }
+  74% { transform: rotate(76deg); }
+  87% { transform: rotate(71deg); }
+  100% { transform: rotate(74deg); }
+}
+
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 10px 25px;
+  color: #5b514e;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+.feedback p { margin: 0; }
+.scroll-hint { margin-left: auto; color: #6b615d; text-align: right; font-size: 0.75rem; }
+.cue { color: var(--accent); font-size: 1.23rem; line-height: 1; }
+
+@media (max-width: 680px) {
+  .studio { width: calc(100% - 34px); padding-top: 34px; }
+  .hero { margin-bottom: 25px; }
+  .hero-tiles { display: none; }
+  .workbench { border-radius: 16px; }
+  .controls { min-height: 0; padding: 12px; flex-wrap: wrap; gap: 8px; }
+  .quantity { gap: 7px; }
+  .quantity label, .place, .reset { font-size: 0.82rem; }
+  .stepper { grid-template-columns: 30px 32px 30px; }
+  .place, .reset { padding: 0 10px; }
+  .stage { margin: 0 7px; border-radius: 10px; }
+  .stage-bar { padding: 16px 12px 0; }
+  .counters { gap: 9px; }
+  .domino-row { padding-inline: 24px 86px; }
+  .feedback { display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; padding-inline: 13px; }
+  .scroll-hint { grid-column: 2; margin: 0; text-align: left; }
+}
+
+@media (max-width: 390px) {
+  .controls { display: grid; grid-template-columns: 1fr auto; }
+  .quantity { grid-column: 1 / -1; justify-content: space-between; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+  .domino.is-falling .tile { animation: none; transform: rotate(74deg); }
+}
+</style>
+</head>
+<body>
+  <main class="studio">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="wordmark"><span class="mark" aria-hidden="true">⠷</span> Domino Studio</p>
+        <h1>多米诺<span>工作室</span></h1>
+        <p class="intro">摆好骨牌，点一下，看后面的骨牌依次倒下。</p>
+      </div>
+      <div class="hero-tiles" aria-hidden="true">
+        <span class="hero-tile hero-tile-back"><i>•</i><i>••</i></span>
+        <span class="hero-tile hero-tile-front"><i>••</i><i>•</i></span>
+      </div>
+    </header>
+
+    <section class="workbench" aria-label="骨牌实验台">
+      <form class="controls" id="setup-form">
+        <div class="quantity">
+          <label for="domino-count">骨牌数量</label>
+          <div class="stepper">
+            <button type="button" id="decrement" aria-label="减少一块">−</button>
+            <input type="number" id="domino-count" min="1" max="100" step="1" value="14" inputmode="numeric" required>
+            <button type="button" id="increment" aria-label="增加一块">+</button>
+          </div>
+        </div>
+        <button type="submit" class="place">摆放骨牌</button>
+        <button type="button" id="reset" class="reset"><span aria-hidden="true">↺</span> 复位</button>
+      </form>
+
+      <div class="stage">
+        <div class="stage-bar">
+          <div class="stage-title"><span aria-hidden="true"></span>实验台</div>
+          <div class="counters">
+            <span>已摆放 <strong id="placed-count">14</strong></span>
+            <span>已倒下 <strong id="fallen-count">0</strong></span>
+          </div>
+        </div>
+        <div id="stage-scroll" class="stage-scroll">
+          <div id="domino-row" class="domino-row" role="group" aria-label="多米诺骨牌"></div>
+        </div>
+      </div>
+
+      <div class="feedback">
+        <span class="cue" aria-hidden="true">↳</span>
+        <p id="status" role="status">点击任意一块骨牌，它和右侧的骨牌会依次倒下。</p>
+        <span id="scroll-hint" class="scroll-hint" hidden>横向滚动可查看整排骨牌 <span aria-hidden="true">↔</span></span>
+      </div>
+    </section>
+    <noscript>请启用 JavaScript 后再摆放和点击骨牌。</noscript>
+  </main>
+<script>
+"use strict";
+
+const form = document.querySelector("#setup-form");
+const countInput = document.querySelector("#domino-count");
+const decrement = document.querySelector("#decrement");
+const increment = document.querySelector("#increment");
+const reset = document.querySelector("#reset");
+const stage = document.querySelector("#stage-scroll");
+const row = document.querySelector("#domino-row");
+const status = document.querySelector("#status");
+const placedReadout = document.querySelector("#placed-count");
+const fallenReadout = document.querySelector("#fallen-count");
+const scrollHint = document.querySelector("#scroll-hint");
+
+const minimum = Number(countInput.min);
+const maximum = Number(countInput.max);
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const fallInterval = 125;
+const settlingTime = 460;
+
+const pipPatterns = [
+  [],
+  [4],
+  [0, 8],
+  [0, 4, 8],
+  [0, 2, 6, 8],
+  [0, 2, 4, 6, 8],
+  [0, 2, 3, 5, 6, 8],
+];
+
+const tileFaces = [
+  [1, 4], [2, 5], [3, 6], [2, 2], [5, 1], [0, 3], [4, 6],
+  [3, 3], [6, 1], [4, 2], [3, 5], [6, 6], [2, 1], [1, 5],
+];
+
+let dominoes = [];
+let placedCount = 0;
+let fallenCount = 0;
+let firstFallen = 0;
+let focusIndex = 0;
+let cascadeTimer = null;
+let playing = false;
+
+function makeHalf(value) {
+  const half = document.createElement("span");
+  half.className = "half";
+
+  for (let index = 0; index < 9; index += 1) {
+    const pip = document.createElement("span");
+    pip.className = "pip";
+    pip.classList.toggle("is-empty", !pipPatterns[value].includes(index));
+    half.append(pip);
+  }
+
+  return half;
+}
+
+function makeDomino(index) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "domino";
+  button.dataset.number = String(index + 1);
+  button.tabIndex = index === 0 ? 0 : -1;
+  button.setAttribute("aria-label", `第 ${index + 1} 块骨牌`);
+
+  const tile = document.createElement("span");
+  tile.className = "tile";
+  tile.setAttribute("aria-hidden", "true");
+  const [top, bottom] = tileFaces[index % tileFaces.length];
+  tile.append(makeHalf(top), makeHalf(bottom));
+  button.append(tile);
+  return button;
+}
+
+function updateCountControls() {
+  decrement.disabled = countInput.valueAsNumber <= minimum;
+  increment.disabled = countInput.valueAsNumber >= maximum;
+}
+
+function changeInputCount(step) {
+  const entered = countInput.valueAsNumber;
+  const value = Number.isFinite(entered) ? Math.round(entered) : placedCount;
+  countInput.value = String(Math.max(minimum, Math.min(maximum, value + step)));
+  updateCountControls();
+}
+
+function setPlaying(active) {
+  playing = active;
+  row.classList.toggle("is-playing", active);
+  if (active) {
+    row.setAttribute("aria-disabled", "true");
+  } else {
+    row.removeAttribute("aria-disabled");
+  }
+}
+
+function updateScrollHint() {
+  if (scrollHint) scrollHint.hidden = stage.scrollWidth <= stage.clientWidth;
+}
+
+function placeDominoes(count) {
+  window.clearTimeout(cascadeTimer);
+  cascadeTimer = null;
+  setPlaying(false);
+  placedCount = count;
+  fallenCount = 0;
+  firstFallen = count;
+  focusIndex = 0;
+
+  dominoes = Array.from({ length: count }, (_, index) => makeDomino(index));
+  row.replaceChildren(...dominoes);
+  stage.scrollTo({ left: 0, behavior: "instant" });
+  placedReadout.textContent = String(count);
+  fallenReadout.textContent = "0";
+  status.textContent = "点击任意一块骨牌，它和右侧的骨牌会依次倒下。";
+  updateCountControls();
+  updateScrollHint();
+}
+
+function followDomino(domino) {
+  if (stage.scrollWidth <= stage.clientWidth) return;
+
+  const viewport = stage.getBoundingClientRect();
+  const tile = domino.getBoundingClientRect();
+  const relativeLeft = tile.left - viewport.left;
+  if (relativeLeft < 0 || relativeLeft > stage.clientWidth * 0.7) {
+    stage.scrollTo({
+      left: stage.scrollLeft + relativeLeft - stage.clientWidth * 0.45,
+      behavior: reducedMotion.matches ? "instant" : "smooth",
+    });
+  }
+}
+
+function markFalling(index) {
+  const domino = dominoes[index];
+  domino.classList.add("is-falling");
+  domino.setAttribute("aria-label", `第 ${index + 1} 块骨牌，已倒下`);
+  domino.setAttribute("aria-disabled", "true");
+  fallenCount += 1;
+  fallenReadout.textContent = String(fallenCount);
+}
+
+function startCascade(start) {
+  if (playing || start >= firstFallen) return;
+
+  const end = firstFallen;
+  firstFallen = start;
+  const finish = () => {
+    cascadeTimer = null;
+    setPlaying(false);
+    status.textContent = fallenCount === placedCount
+      ? "全部倒下了！点「复位」再玩一次。"
+      : `已有 ${fallenCount} 块倒下。还可以点击左侧站立的骨牌。`;
+  };
+
+  if (reducedMotion.matches) {
+    for (let index = start; index < end; index += 1) {
+      markFalling(index);
+    }
+    finish();
+    return;
+  }
+
+  setPlaying(true);
+  status.textContent = `第 ${start + 1} 块骨牌带动了连锁反应。`;
+
+  function fall(index) {
+    followDomino(dominoes[index]);
+    markFalling(index);
+    cascadeTimer = index + 1 < end
+      ? window.setTimeout(() => fall(index + 1), fallInterval)
+      : window.setTimeout(finish, settlingTime);
+  }
+
+  fall(start);
+}
+
+function setFocusIndex(index) {
+  dominoes[focusIndex].tabIndex = -1;
+  dominoes[index].tabIndex = 0;
+  focusIndex = index;
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const count = countInput.valueAsNumber;
+  if (Number.isInteger(count) && count >= minimum && count <= maximum) {
+    placeDominoes(count);
+  }
+});
+
+countInput.addEventListener("input", updateCountControls);
+decrement.addEventListener("click", () => changeInputCount(-1));
+increment.addEventListener("click", () => changeInputCount(1));
+reset.addEventListener("click", () => {
+  countInput.value = String(placedCount);
+  placeDominoes(placedCount);
+});
+
+row.addEventListener("click", (event) => {
+  const domino = event.target.closest(".domino");
+  if (domino) startCascade(Number(domino.dataset.number) - 1);
+});
+
+row.addEventListener("focusin", (event) => {
+  if (event.target.matches(".domino")) {
+    setFocusIndex(Number(event.target.dataset.number) - 1);
+  }
+});
+
+row.addEventListener("keydown", (event) => {
+  let next;
+  switch (event.key) {
+    case "ArrowLeft":
+      next = Math.max(0, focusIndex - 1);
+      break;
+    case "ArrowRight":
+      next = Math.min(placedCount - 1, focusIndex + 1);
+      break;
+    case "Home":
+      next = 0;
+      break;
+    case "End":
+      next = placedCount - 1;
+      break;
+    default:
+      return;
+  }
+
+  event.preventDefault();
+  dominoes[next].focus({ preventScroll: true });
+  followDomino(dominoes[next]);
+});
+
+placeDominoes(countInput.valueAsNumber);
+
+if (scrollHint) {
+  const observer = new ResizeObserver(updateScrollHint);
+  observer.observe(stage);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9f5e9">
+  <meta name="description" content="在 3D 台面上画一条路线，沿路摆放多米诺骨牌。">
+  <title>多米诺工作室</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23ed603b'/%3E%3Crect x='12' y='5' width='16' height='30' rx='3' fill='%23fff5de'/%3E%3Cpath d='M12 20h16' stroke='%23ed603b'/%3E%3Cg fill='%23ed603b'%3E%3Ccircle cx='20' cy='13' r='2'/%3E%3Ccircle cx='17' cy='26' r='1.6'/%3E%3Ccircle cx='23' cy='29' r='1.6'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="scene.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="studio">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="wordmark"><span class="mark" aria-hidden="true">⠷</span> Domino Studio</p>
+        <h1>多米诺<span>工作室</span></h1>
+        <p class="intro">在 3D 台面上画出路线，点一块骨牌，看它们沿路倒下。</p>
+      </div>
+      <div class="hero-tiles" aria-hidden="true">
+        <span class="hero-tile hero-tile-back"><i>•</i><i>••</i></span>
+        <span class="hero-tile hero-tile-front"><i>••</i><i>•</i></span>
+      </div>
+    </header>
+
+    <section class="workbench" aria-label="骨牌实验台">
+      <form class="controls" id="setup-form">
+        <div class="quantity">
+          <label for="domino-count">骨牌数量</label>
+          <div class="stepper">
+            <button type="button" id="decrement" aria-label="减少一块">−</button>
+            <input type="number" id="domino-count" min="1" max="100" step="1" value="14" inputmode="numeric" required>
+            <button type="button" id="increment" aria-label="增加一块">+</button>
+          </div>
+        </div>
+        <button type="submit" class="place">摆放骨牌</button>
+        <div class="route-tools" aria-label="路线工具">
+          <button type="button" id="draw-path" aria-pressed="false">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2.5 15.5c3.6 0 1.8-9 5.8-9 2.9 0 1.7 6.7 4.5 6.7 2.7 0 2.4-5.4 4.7-8.7m-4 0h4v4" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            画路线
+          </button>
+          <button type="button" id="shuffle-path">换路线</button>
+        </div>
+        <button type="button" id="reset" class="reset"><span aria-hidden="true">↺</span> 复位</button>
+      </form>
+
+      <div class="stage">
+        <div class="stage-bar">
+          <div class="stage-title"><span aria-hidden="true"></span>3D 实验台</div>
+          <div class="counters">
+            <span>已摆放 <strong id="placed-count">14</strong></span>
+            <span>已倒下 <strong id="fallen-count">0</strong></span>
+          </div>
+        </div>
+        <canvas id="stage-canvas" class="stage-canvas" tabindex="0" aria-label="3D 多米诺骨牌台面" aria-describedby="stage-help">
+          你的浏览器需要支持 Canvas 才能显示 3D 台面。
+        </canvas>
+      </div>
+
+      <div class="feedback">
+        <span class="cue" aria-hidden="true">↳</span>
+        <p id="status" role="status">点击任意一块骨牌，它后面的骨牌会沿路线依次倒下。</p>
+        <p id="stage-help" class="stage-help">键盘可用方向键选骨牌，按回车推倒。</p>
+      </div>
+    </section>
+    <noscript>请启用 JavaScript 后再摆放和点击骨牌。</noscript>
+  </main>
+</body>
+</html>
